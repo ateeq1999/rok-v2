@@ -1,0 +1,51 @@
+[package]
+name = "rok-cli"
+description = "rok: one command for the rok toolchain — rok-data's and rok-tools' commands linked in, any other `rok <name>` run as `rok-<name>` from the PATH"
+version = "0.7.0"
+edition = "2024"
+rust-version = "1.94"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/ateeq1999/rok-v2"
+homepage = "https://github.com/ateeq1999/rok-v2"
+authors = ["The rok Contributors"]
+readme = "README.md"
+keywords = ["cli", "database", "postgres", "codegen", "developer-tools"]
+categories = ["command-line-utilities", "development-tools", "database"]
+include = [
+    "/src/**/*.rs",
+    "/Cargo.toml",
+    "/README.md",
+    "/CHANGELOG.md",
+    "/LICENSE-MIT",
+    "/LICENSE-APACHE",
+]
+
+[lib]
+name = "rok_cli"
+
+[[bin]]
+name = "rok"
+path = "src/main.rs"
+
+[dependencies]
+clap = "4"
+rok-data-cli = "0.6.1"
+rok-tools-cli = "0.1"
+
+[dev-dependencies]
+tempfile = "3"
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+missing_debug_implementations = "warn"
+unreachable_pub = "warn"
+
+[lints.clippy]
+dbg_macro = "warn"
+todo = "warn"
+
+# Release binaries ship without debug symbols; they are several megabytes
+# of the binary's size.
+[profile.release]
+strip = true
