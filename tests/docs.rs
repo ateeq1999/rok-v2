@@ -65,16 +65,30 @@ fn get(address: &str, path: &str) -> (String, String) {
     (status, body)
 }
 
+/// The server under test, stopped when the test ends however it ends: a
+/// failed assertion must not leave `rok docs` running (on Windows it also
+/// holds the test output's pipe and the binary open).
+struct Server(std::process::Child);
+
+impl Drop for Server {
+    fn drop(&mut self) {
+        let _ = self.0.kill();
+        let _ = self.0.wait();
+    }
+}
+
 #[test]
 fn it_serves_html_pages_on_localhost() {
-    let mut child = Command::new(env!("CARGO_BIN_EXE_rok"))
-        .args(["docs", "db", "create", "--no-open", "--port", "0"])
-        .stdout(Stdio::piped())
-        .stderr(Stdio::null())
-        .spawn()
-        .expect("run rok docs");
+    let mut server = Server(
+        Command::new(env!("CARGO_BIN_EXE_rok"))
+            .args(["docs", "db", "create", "--no-open", "--port", "0"])
+            .stdout(Stdio::piped())
+            .stderr(Stdio::null())
+            .spawn()
+            .expect("run rok docs"),
+    );
     let mut first = String::new();
-    BufReader::new(child.stdout.take().expect("piped stdout"))
+    BufReader::new(server.0.stdout.take().expect("piped stdout"))
         .read_line(&mut first)
         .expect("the address line");
     let url = first.trim();
@@ -98,7 +112,4 @@ fn it_serves_html_pages_on_localhost() {
     assert!(status.contains("200"), "{status}");
     let (status, _) = get(&address, "/commands/nope");
     assert!(status.contains("404"), "{status}");
-
-    child.kill().expect("stop rok docs");
-    let _ = child.wait();
 }
