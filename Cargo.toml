@@ -30,7 +30,7 @@ path = "src/main.rs"
 
 [dependencies]
 clap = "4"
-rok-data-cli = "0.7.0"
+rok-data-cli = "0.8.0"
 rok-tools-cli = "0.1"
 pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
 

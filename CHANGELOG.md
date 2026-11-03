@@ -20,6 +20,9 @@ are this file's `## [X.Y.Z]` section.
 
 - `rok` links `rok-data-cli` 0.7.0 (was 0.6.1). Its commands, flags and
   output are unchanged; the release keeps `rok` on rok-data's current line.
+- `rok` links `rok-data-cli` 0.8.0 (was 0.7.0): `rok server update`, an
+  Examples section in every command's `--help`, and `framework = "grpc"`
+  for `rok gen` (a `.proto` per Resource and a tonic service per feature).
 
 ## [0.7.0] — one command for the rok toolchain
 
