@@ -1752,9 +1752,9 @@ dependencies = [
 
 [[package]]
 name = "rok-data"
-version = "0.6.1"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1908de6475e207b475042f67e1de01163c75ad94645f82ef33d6449f131f7351"
+checksum = "f6ac9e6f13af49a8b9425884ab857ed94e05078598ebc2d36a5d4118e15aa564"
 dependencies = [
  "rok-data-core",
  "rok-data-macros",
@@ -1762,9 +1762,9 @@ dependencies = [
 
 [[package]]
 name = "rok-data-cli"
-version = "0.6.1"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3f89364a752554d0779b9bffa34dba723aa4bdb1c538cff07c7042bb981cb745"
+checksum = "40f01829dd2f0606c2841b82c3835d49847824e6a9727f65ffa999c7258ca00e"
 dependencies = [
  "anyhow",
  "chrono",
@@ -1784,9 +1784,9 @@ dependencies = [
 
 [[package]]
 name = "rok-data-codegen"
-version = "0.6.1"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a031c2b909b17e0339710f17aa690d0e031f30baa3703e1ed5b4fc2d2396ab69"
+checksum = "b2e159d6a2e0e5a43f31eddda78e7a728c63cebc13b28b615faed784e613b5ee"
 dependencies = [
  "prettyplease",
  "proc-macro2",
@@ -1802,9 +1802,9 @@ dependencies = [
 
 [[package]]
 name = "rok-data-core"
-version = "0.6.1"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "972f26553f7e64178a1def7481f6b51e155af5882c4b835623ea678029b15187"
+checksum = "d7710f9ec5e2d4d5827823effae9f418b6769a568d422f78876f81995a76fc43"
 dependencies = [
  "async-stream",
  "futures-core",
@@ -1818,9 +1818,9 @@ dependencies = [
 
 [[package]]
 name = "rok-data-macros"
-version = "0.6.1"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9f27cf8c0d28ac1e6627b42e27c8208078545097d043270366e82e815f3ecc2b"
+checksum = "657f0a2073fa15adadd278f235b0a2f78fca36bd3effef940f68cde800423b06"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
@@ -1830,9 +1830,9 @@ dependencies = [
 
 [[package]]
 name = "rok-data-sqlc"
-version = "0.6.1"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "81772a37386546a12f1bb9f1ef81d61c4d8adeb682c46608798655300525469a"
+checksum = "3d734018d10bdc2bdd4d439054d80d567af5b4256ace3d3db6875725fe74177a"
 dependencies = [
  "anyhow",
  "clap",

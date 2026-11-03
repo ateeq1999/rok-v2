@@ -29,7 +29,7 @@ path = "src/main.rs"
 
 [dependencies]
 clap = "4"
-rok-data-cli = "0.6.1"
+rok-data-cli = "0.7.0"
 rok-tools-cli = "0.1"
 
 [dev-dependencies]

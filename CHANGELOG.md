@@ -8,6 +8,11 @@ are this file's `## [X.Y.Z]` section.
 
 ## [Unreleased]
 
+**Changed**
+
+- `rok` links `rok-data-cli` 0.7.0 (was 0.6.1). Its commands, flags and
+  output are unchanged; the release keeps `rok` on rok-data's current line.
+
 ## [0.7.0] — one command for the rok toolchain
 
 The first release from this repository (rok-data's workspace ADR 0032).
