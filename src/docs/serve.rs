@@ -37,8 +37,18 @@ pub(crate) fn serve(listener: &TcpListener) {
 }
 
 fn answer(mut stream: TcpStream) -> std::io::Result<()> {
+    let mut reader = BufReader::new(&stream);
     let mut request_line = String::new();
-    BufReader::new(&stream).read_line(&mut request_line)?;
+    reader.read_line(&mut request_line)?;
+    // Read the rest of the request's head before answering: closing a
+    // socket with unread request bytes resets it on Windows, and the
+    // client then loses the answer.
+    loop {
+        let mut header = String::new();
+        if reader.read_line(&mut header)? == 0 || header.trim().is_empty() {
+            break;
+        }
+    }
     let mut parts = request_line.split_whitespace();
     let method = parts.next().unwrap_or_default();
     let target = parts.next().unwrap_or("/");
