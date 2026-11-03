@@ -14,6 +14,7 @@ categories = ["command-line-utilities", "development-tools", "database"]
 include = [
     "/src/**/*.rs",
     "/src/docs/guides/*.md",
+    "/build.rs",
     "/Cargo.toml",
     "/README.md",
     "/CHANGELOG.md",
@@ -33,6 +34,15 @@ clap = "4"
 rok-data-cli = "0.8.0"
 rok-tools-cli = "0.1"
 pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
+# `rok update`: the release lookup and download (HTTPS, rustls), the
+# checksum, the archives, and replacing the running binary.
+ureq = "3"
+serde_json = "1"
+sha2 = "0.11"
+flate2 = "1"
+tar = "0.4"
+zip = { version = "9", default-features = false, features = ["deflate"] }
+self-replace = "1"
 
 [dev-dependencies]
 tempfile = "3"

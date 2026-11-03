@@ -13,6 +13,7 @@ no command's grammar lives here.
 | A `rok tools …` Tool | rok-tools, then bump `rok-tools-cli` here |
 | Which word goes where, the PATH fallback, `rok --help` | `src/lib.rs`, `src/external.rs`, `src/help.rs` |
 | `rok docs`: a page's layout, a guide, the server | `src/docs/` (`pages.rs`, `guides/*.md`, `serve.rs`); a command's own text and examples belong to its CLI |
+| `rok update`: the release lookup, the checksum, the archives, replacing the binary | `src/update/` (`release.rs`, `mod.rs`); `build.rs` records the target triple |
 | Binary releases and the installers | `.github/workflows/release.yml`, `install.sh`, `install.ps1` |
 
 ## Rules
