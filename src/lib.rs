@@ -20,6 +20,7 @@ use std::process::ExitCode;
 mod docs;
 mod external;
 mod help;
+mod update;
 
 /// The word that reaches rok-tools.
 const TOOLS: &str = "tools";
@@ -47,6 +48,7 @@ where
             ExitCode::SUCCESS
         }
         Some("docs") => docs::run(&rest),
+        Some("update") => update::run(&rest),
         Some(TOOLS) => {
             let code = rok_tools_cli::run_from(prepend("rok tools", &rest));
             ExitCode::from(u8::try_from(code).unwrap_or(1))
@@ -85,7 +87,7 @@ fn linked_words() -> Vec<String> {
     rok_data_cli::command()
         .get_subcommands()
         .map(|command| command.get_name().to_owned())
-        .chain([TOOLS.to_owned(), "docs".to_owned()])
+        .chain([TOOLS.to_owned(), "docs".to_owned(), "update".to_owned()])
         .collect()
 }
 

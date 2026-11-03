@@ -37,6 +37,11 @@ curl -fsSL https://raw.githubusercontent.com/ateeq1999/rok-v2/main/install.sh | 
 irm https://raw.githubusercontent.com/ateeq1999/rok-v2/main/install.ps1 | iex
 ```
 
+`rok update` installs the latest release over the running `rok` (`--check`
+only reports; `--version vX.Y.Z` picks one). A `rok` from `cargo install`
+updates through Cargo; any other downloads its archive, checks the SHA-256,
+and replaces itself.
+
 `rok-cli` up to 0.6.1 was an older task runner, now archived; from 0.7.0
 the crate is this command.
 

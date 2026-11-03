@@ -3,7 +3,7 @@
 
 use std::fmt::Write as _;
 
-use crate::{TOOLS, docs, external, linked_words};
+use crate::{TOOLS, docs, external, linked_words, update};
 
 /// Every command `rok` answers, as one tree: rok-data's, `tools`, and
 /// `rok`'s own (`docs`). `rok --help` and `rok docs` both read it.
@@ -18,6 +18,7 @@ pub(crate) fn tree() -> clap::Command {
         .subcommands(rok_data_cli::command().get_subcommands().cloned())
         .subcommand(tools)
         .subcommand(docs::command())
+        .subcommand(update::command())
 }
 
 /// The root help text.

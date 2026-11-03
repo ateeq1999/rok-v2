@@ -10,6 +10,10 @@ are this file's `## [X.Y.Z]` section.
 
 **Added**
 
+- `rok update`: install the latest release (or `--version`'s) over the running
+  `rok`. `--check` only reports, `--json` reports as one object. A `rok` from
+  `cargo install` updates through Cargo; any other downloads its archive,
+  verifies its SHA-256 (a mismatch installs nothing) and replaces itself.
 - `rok docs`: the documentation of every command, served on localhost and
   opened in the browser (`rok docs db create` for one command's page;
   `--port`, `--no-open`; `--print` for the Markdown). Command pages come
