@@ -8,6 +8,8 @@ are this file's `## [X.Y.Z]` section.
 
 ## [Unreleased]
 
+## [0.8.0] — `rok docs`, `rok update`, and rok-data 0.8
+
 **Added**
 
 - `rok update`: install the latest release (or `--version`'s) over the running
@@ -22,9 +24,7 @@ are this file's `## [X.Y.Z]` section.
 
 **Changed**
 
-- `rok` links `rok-data-cli` 0.7.0 (was 0.6.1). Its commands, flags and
-  output are unchanged; the release keeps `rok` on rok-data's current line.
-- `rok` links `rok-data-cli` 0.8.0 (was 0.7.0): `rok server update`, an
+- `rok` links `rok-data-cli` 0.8.0 (0.7.0 linked 0.6.1): `rok server update`, an
   Examples section in every command's `--help`, and `framework = "grpc"`
   for `rok gen` (a `.proto` per Resource and a tonic service per feature).
 
