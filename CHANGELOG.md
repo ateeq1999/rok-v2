@@ -8,6 +8,14 @@ are this file's `## [X.Y.Z]` section.
 
 ## [Unreleased]
 
+**Added**
+
+- `rok docs`: the documentation of every command, served on localhost and
+  opened in the browser (`rok docs db create` for one command's page;
+  `--port`, `--no-open`; `--print` for the Markdown). Command pages come
+  from the command tree `rok` links, with each command's examples, so they
+  match the running version; four guides are embedded.
+
 **Changed**
 
 - `rok` links `rok-data-cli` 0.7.0 (was 0.6.1). Its commands, flags and

@@ -13,6 +13,7 @@ that answers, whose reference is the contract for it:
 rok                      print this help (exit 0)
 rok -h | --help | help   print this help (exit 0)
 rok -V | --version       print `rok <version>` (exit 0)
+rok docs [COMMAND…]      the documentation, served on 127.0.0.1 (see below)
 rok <word> [ARGS…]       route as above
 ```
 
@@ -27,3 +28,24 @@ rok <word> [ARGS…]       route as above
 - `rok --help` lists, under "Installed", the `rok-*` executables found on
   the `PATH`, without the linked CLIs' own standalone binaries
   (`rok-data`, `rok-tools`), which only repeat a linked command.
+
+## `rok docs [COMMAND…] [OPTIONS]`
+
+`rok`'s own command: the documentation of every command it answers.
+
+| Flag | Meaning |
+| --- | --- |
+| `COMMAND…` | Open this command's page (`rok docs db create`); none is the index |
+| `-p, --port <PORT>` | Serve on this port, or the first free one of the next ten (default 4730; `0` lets the system pick) |
+| `-n, --no-open` | Serve without opening the browser |
+| `--print` | Write the page's Markdown on stdout instead of serving |
+
+The pages are built from the command tree `rok` links: each command's
+usage, arguments, options (with their defaults), subcommands, and the
+examples its CLI ships (`rok_data_cli::examples`). They match the `rok`
+running them. Guides (getting started, servers and databases, migrations,
+generating code) are embedded with it.
+
+It serves on `127.0.0.1` only, GET only, one request at a time, until
+interrupted. The first line on stdout is the page's address, for scripts.
+An unknown `COMMAND` is a usage error (exit 2).

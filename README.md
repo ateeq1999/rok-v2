@@ -10,6 +10,11 @@ the way `cargo` and `git` find their subcommands.
 | `tools …` | [rok-tools](https://github.com/ateeq1999/rok-tools)' CLI (`rok-tools-cli`), linked in |
 | anything else, `rok <name> …` | the executable `rok-<name>` on your `PATH` |
 
+`rok docs` opens every command's documentation in your browser, served on
+localhost: a page per command (its usage, options and examples, from the
+`rok` you run) and short guides. `rok docs db create` opens that command's
+page; `--print` writes the Markdown instead.
+
 `rok --help` lists the linked commands and, under "Installed", every
 `rok-*` executable it finds. Each command's own help is
 `rok <command> --help`.
