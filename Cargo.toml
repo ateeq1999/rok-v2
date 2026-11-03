@@ -13,6 +13,7 @@ keywords = ["cli", "database", "postgres", "codegen", "developer-tools"]
 categories = ["command-line-utilities", "development-tools", "database"]
 include = [
     "/src/**/*.rs",
+    "/src/docs/guides/*.md",
     "/Cargo.toml",
     "/README.md",
     "/CHANGELOG.md",
