@@ -17,6 +17,7 @@
 use std::ffi::{OsStr, OsString};
 use std::process::ExitCode;
 
+mod docs;
 mod external;
 mod help;
 
@@ -45,6 +46,7 @@ where
             println!("rok {}", env!("CARGO_PKG_VERSION"));
             ExitCode::SUCCESS
         }
+        Some("docs") => docs::run(&rest),
         Some(TOOLS) => {
             let code = rok_tools_cli::run_from(prepend("rok tools", &rest));
             ExitCode::from(u8::try_from(code).unwrap_or(1))
@@ -83,7 +85,7 @@ fn linked_words() -> Vec<String> {
     rok_data_cli::command()
         .get_subcommands()
         .map(|command| command.get_name().to_owned())
-        .chain(std::iter::once(TOOLS.to_owned()))
+        .chain([TOOLS.to_owned(), "docs".to_owned()])
         .collect()
 }
 

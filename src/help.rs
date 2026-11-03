@@ -1,22 +1,28 @@
 //! `rok --help`: the linked CLIs' commands, as they describe themselves,
-//! and the `rok-*` executables found on the `PATH`.
+//! `rok`'s own, and the `rok-*` executables found on the `PATH`.
 
 use std::fmt::Write as _;
 
-use crate::{TOOLS, external, linked_words};
+use crate::{TOOLS, docs, external, linked_words};
 
-/// The root help text.
-pub(crate) fn render() -> String {
+/// Every command `rok` answers, as one tree: rok-data's, `tools`, and
+/// `rok`'s own (`docs`). `rok --help` and `rok docs` both read it.
+pub(crate) fn tree() -> clap::Command {
     let tools = rok_tools_cli::command()
         .name(TOOLS)
         .about("Developer tools: grep, replace, loc, refactor, … (`rok tools list`)");
-    let mut command = clap::Command::new("rok")
+    clap::Command::new("rok")
         .version(env!("CARGO_PKG_VERSION"))
         .about("One command for the rok toolchain")
         .disable_help_subcommand(true)
         .subcommands(rok_data_cli::command().get_subcommands().cloned())
-        .subcommand(tools);
-    let mut text = command.render_help().to_string();
+        .subcommand(tools)
+        .subcommand(docs::command())
+}
+
+/// The root help text.
+pub(crate) fn render() -> String {
+    let mut text = tree().render_help().to_string();
     let installed = external::installed(&linked_words());
     text.push_str("\nInstalled (rok <name> runs rok-<name> from the PATH):\n");
     if installed.is_empty() {
@@ -26,7 +32,7 @@ pub(crate) fn render() -> String {
         let _ = writeln!(text, "  {name}");
     }
     text.push_str(
-        "\nEach command's own help: `rok <command> --help`. \
+        "\nEach command's own help: `rok <command> --help`, or `rok docs <command>` in the browser. \
          Most commands accept --json for machine-readable output.\n",
     );
     text
