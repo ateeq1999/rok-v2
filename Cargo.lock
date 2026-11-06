@@ -1779,7 +1779,7 @@ dependencies = [
 
 [[package]]
 name = "rok-cli"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "clap",
  "flate2",
@@ -1797,9 +1797,9 @@ dependencies = [
 
 [[package]]
 name = "rok-data"
-version = "0.8.0"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "792dd7823a8644042913a8da5f252c2537255390eb7a0ea1dcc360c8a9a046f8"
+checksum = "617f42f6f92526e513e83a1faa6d19de187a91f793a730325717eb0aecb2d3c7"
 dependencies = [
  "rok-data-core",
  "rok-data-macros",
@@ -1807,14 +1807,15 @@ dependencies = [
 
 [[package]]
 name = "rok-data-cli"
-version = "0.8.0"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2dda60d4fe0cdcb37dca43ed831d4f5d4d152ae89f14dbd5660951821fe36cab"
+checksum = "eac13723018f006e56df9406227b83bc6c99e17f6a1383fbc50f92328e39ca4d"
 dependencies = [
  "anyhow",
  "chrono",
  "clap",
  "dirs",
+ "dotenvy",
  "keyring",
  "rok-data",
  "rok-data-codegen",
@@ -1829,9 +1830,9 @@ dependencies = [
 
 [[package]]
 name = "rok-data-codegen"
-version = "0.8.0"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c64c119e06628a866544ed89701dab890b8ad900a1080647b04aa3e4b425c04b"
+checksum = "e28c2291300553e9b2c7096116c16b58c8a03f9cdbdcdc248b30720873b5e59b"
 dependencies = [
  "prettyplease",
  "proc-macro2",
@@ -1847,9 +1848,9 @@ dependencies = [
 
 [[package]]
 name = "rok-data-core"
-version = "0.8.0"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d6c997c0776e0f1437f29fd5f98360fd6a5d535d69867e1326a28c4347bc5efb"
+checksum = "668421275698d42f71524d771d525a53636a5298d66db6bf83f5b1e2083fa101"
 dependencies = [
  "async-stream",
  "futures-core",
@@ -1863,9 +1864,9 @@ dependencies = [
 
 [[package]]
 name = "rok-data-macros"
-version = "0.8.0"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6c570158f0f5f6c58650d444106b861bc382cab752ea55b973d6b2db13d060af"
+checksum = "d0c71545323bd7ad1c8e7306635d19397f6451ac1a57f5090bc40c9b3303401c"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
@@ -1875,9 +1876,9 @@ dependencies = [
 
 [[package]]
 name = "rok-data-sqlc"
-version = "0.8.0"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c5c7b3fd38728a0cbd6a6f207b63ebfdbe32563721bda7b140af6c85e4f603f3"
+checksum = "9c22f4f752c27656dc84cf03c31f8ab35bfe466282ed72654b484de47dc14de0"
 dependencies = [
  "anyhow",
  "clap",
@@ -1895,9 +1896,9 @@ dependencies = [
 
 [[package]]
 name = "rok-templates"
-version = "0.6.0"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4feac0bccedcd41fc311cc779845483c709b35c0b3fc4576f60be3cccaa37d3a"
+checksum = "8ab3cccc93d5f89c2b226d51fec29278307ff1e22269bc2c74f73aa48a080150"
 
 [[package]]
 name = "rok-tools"
