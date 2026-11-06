@@ -1,7 +1,7 @@
 [package]
 name = "rok-cli"
 description = "rok: one command for the rok toolchain — rok-data's and rok-tools' commands linked in, any other `rok <name>` run as `rok-<name>` from the PATH"
-version = "0.8.0"
+version = "0.9.0"
 edition = "2024"
 rust-version = "1.94"
 license = "MIT OR Apache-2.0"
@@ -31,7 +31,7 @@ path = "src/main.rs"
 
 [dependencies]
 clap = "4"
-rok-data-cli = "0.8.0"
+rok-data-cli = "0.9.0"
 rok-tools-cli = "0.1"
 pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
 # `rok update`: the release lookup and download (HTTPS, rustls), the

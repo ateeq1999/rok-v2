@@ -8,6 +8,19 @@ are this file's `## [X.Y.Z]` section.
 
 ## [Unreleased]
 
+## [0.9.0] — rok-data 0.9
+
+**Changed**
+
+- `rok` links `rok-data-cli` 0.9.0 (was 0.8.0). Its main changes:
+  - **`rok gen` is strict:** it fails on a query it can't type (`--lenient` to skip), and a failed step lists what's done and what isn't.
+  - **Better typing:** generated query types are tighter (casts keep nullability, typed ids, `EXISTS`, `coalesce`, subqueries), and `UPDATE … FROM`, `INSERT … SELECT`, `:page` queries and `queries/shared/` work.
+  - **One rule for finding the project:** `rok gen`, `rok migrate`, `rok schema diff` and `check-arch` all find it from `rok.toml` (`--app`), and they load the App's `.env`.
+  - **Clients send `If-Match`.**
+  - **`rok init --template grpc`.**
+
+  rok-data's migration guide (§To 0.9.0) lists what changes for a project.
+
 ## [0.8.0] — `rok docs`, `rok update`, and rok-data 0.8
 
 **Added**
