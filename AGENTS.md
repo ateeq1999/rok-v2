@@ -11,6 +11,7 @@ no command's grammar lives here.
 | --- | --- |
 | A `rok db`, `rok migrate`, `rok gen`, `rok sqlc` … command or flag | rok-data (`crates/rok-cli`), then bump `rok-data-cli` here |
 | A `rok tools …` Tool | rok-tools, then bump `rok-tools-cli` here |
+| A `rok dev`, `rok run`, `rok doctor` or `rok port` command or flag | rok-dev, then bump `rok-dev-cli` here |
 | Which word goes where, the PATH fallback, `rok --help` | `src/lib.rs`, `src/external.rs`, `src/help.rs` |
 | `rok docs`: a page's layout, a guide, the server | `src/docs/` (`pages.rs`, `guides/*.md`, `serve.rs`); a command's own text and examples belong to its CLI |
 | `rok update`: the release lookup, the checksum, the archives, replacing the binary | `src/update/` (`release.rs`, `mod.rs`); `build.rs` records the target triple |
@@ -19,7 +20,8 @@ no command's grammar lives here.
 ## Rules
 
 1. Never re-declare a linked CLI's grammar. rok-data's words are read
-   from `rok_data_cli::command()`'s subcommands; tokens reach each CLI
+   from `rok_data_cli::command()`'s subcommands, rok-dev's from
+   `rok_dev_cli::command()`'s; tokens reach each CLI
    verbatim, named `rok` (`rok tools` for rok-tools) so their help reads
    `rok …`.
 2. Exit codes: 0 for success and help, 2 for a usage error (an unknown
@@ -27,7 +29,10 @@ no command's grammar lives here.
    failure; a linked CLI's or a `rok-<word>`'s own code passes through.
 3. `cargo fmt --all` and `cargo clippy --all-targets -- -D warnings`
    clean; `tests/routing.rs` drives the built binary on every OS.
-4. The linked CLIs come from crates.io. To build against unreleased
+4. The linked CLIs come from crates.io, except `rok-dev-cli`: a git
+   dependency pinned to a rok-dev commit until rok-dev's first release
+   (its ticket 11), and `cargo publish` refuses rok-cli until then. To
+   build against unreleased
    member checkouts, use the meta-repo's patch file:
    `cargo build --config ../.cargo/patch-local.toml`.
 

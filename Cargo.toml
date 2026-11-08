@@ -33,6 +33,10 @@ path = "src/main.rs"
 clap = "4"
 rok-data-cli = "0.9.0"
 rok-tools-cli = "0.1"
+# Not on crates.io yet: rok-dev ticket 11 (its release) swaps this for
+# `rok-dev-cli = "0.1"`. `cargo publish` refuses a git dependency, so rok-cli
+# cannot be released until then.
+rok-dev-cli = { git = "https://github.com/ateeq1999/rok-dev", rev = "883a9f90686e9ef6d0b523bc658e201d054ea1da" }
 pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
 # `rok update`: the release lookup and download (HTTPS, rustls), the
 # checksum, the archives, and replacing the running binary.

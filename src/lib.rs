@@ -7,6 +7,9 @@
 //!   `schema`, `sqlc`, …, read from [`rok_data_cli::command`], so they never
 //!   drift) goes to [`rok_data_cli::run`];
 //! - `tools` goes to [`rok_tools_cli::run_from`];
+//! - a word of rok-dev's CLI (`dev`, `run`, `doctor`, `port`, read from
+//!   [`rok_dev_cli::command`]) goes to [`rok_dev_cli::run_from`]
+//!   (rok-data's workspace ADR 0034);
 //! - any other word `x` runs `rok-x` from the `PATH` with the remaining
 //!   arguments, like `cargo` and `git` run their subcommands.
 //!
@@ -53,6 +56,13 @@ where
             let code = rok_tools_cli::run_from(prepend("rok tools", &rest));
             ExitCode::from(u8::try_from(code).unwrap_or(1))
         }
+        Some(name) if is_dev_word(name) => {
+            // Named `rok`, so rok-dev's help reads `rok dev …`.
+            let mut forwarded = vec![OsString::from("rok"), word.clone()];
+            forwarded.extend(rest);
+            let code = rok_dev_cli::run_from(forwarded);
+            ExitCode::from(u8::try_from(code).unwrap_or(1))
+        }
         Some(name) if is_data_word(name) => {
             // rok-data's CLI takes `String`s (and names itself after the
             // first one, so its help says `rok …`).
@@ -82,10 +92,18 @@ fn is_data_word(word: &str) -> bool {
     })
 }
 
+/// Whether `word` is one of rok-dev's commands.
+fn is_dev_word(word: &str) -> bool {
+    rok_dev_cli::command()
+        .get_subcommands()
+        .any(|command| command.get_name() == word)
+}
+
 /// The commands `rok` links, by name, for help and the PATH listing.
 fn linked_words() -> Vec<String> {
     rok_data_cli::command()
         .get_subcommands()
+        .chain(rok_dev_cli::command().get_subcommands())
         .map(|command| command.get_name().to_owned())
         .chain([TOOLS.to_owned(), "docs".to_owned(), "update".to_owned()])
         .collect()

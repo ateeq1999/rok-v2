@@ -8,6 +8,7 @@ the way `cargo` and `git` find their subcommands.
 | --- | --- |
 | `init`, `gen`, `generate`, `migrate`, `db`, `server`, `schema`, `sqlc` | [rok-data](https://github.com/ateeq1999/rok-data)'s CLI (`rok-data-cli`), linked in |
 | `tools …` | [rok-tools](https://github.com/ateeq1999/rok-tools)' CLI (`rok-tools-cli`), linked in |
+| `dev`, `run`, `doctor`, `port` | [rok-dev](https://github.com/ateeq1999/rok-dev)'s CLI (`rok-dev-cli`), linked in; each says "not built yet" until its rok-dev ticket lands |
 | anything else, `rok <name> …` | the executable `rok-<name>` on your `PATH` |
 
 `rok docs` opens every command's documentation in your browser, served on
