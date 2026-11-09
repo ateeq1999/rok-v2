@@ -5,20 +5,34 @@ use std::fmt::Write as _;
 
 use crate::{TOOLS, docs, external, linked_words, update};
 
-/// Every command `rok` answers, as one tree: rok-data's, `tools`, and
-/// `rok`'s own (`docs`). `rok --help` and `rok docs` both read it.
+/// Every command `rok` answers, as one tree: rok-data's, `tools`, rok-dev's
+/// (`dev`, `run`, `doctor`, `port`), and `rok`'s own (`docs`, `update`).
+/// `rok --help` and `rok docs` both read it.
 pub(crate) fn tree() -> clap::Command {
     let tools = rok_tools_cli::command()
         .name(TOOLS)
         .about("Developer tools: grep, replace, loc, refactor, … (`rok tools list`)");
+    let commands = in_order(&rok_data_cli::command())
+        .into_iter()
+        .chain([tools])
+        .chain(in_order(&rok_dev_cli::command()))
+        .chain([docs::command(), update::command()])
+        // A linked CLI's commands keep their own display order, which
+        // would interleave the CLIs; number them in this order instead.
+        .enumerate()
+        .map(|(order, command)| command.display_order(order));
     clap::Command::new("rok")
         .version(env!("CARGO_PKG_VERSION"))
         .about("One command for the rok toolchain")
         .disable_help_subcommand(true)
-        .subcommands(rok_data_cli::command().get_subcommands().cloned())
-        .subcommand(tools)
-        .subcommand(docs::command())
-        .subcommand(update::command())
+        .subcommands(commands)
+}
+
+/// A linked CLI's commands, in the order its own help lists them.
+fn in_order(cli: &clap::Command) -> Vec<clap::Command> {
+    let mut commands: Vec<clap::Command> = cli.get_subcommands().cloned().collect();
+    commands.sort_by_key(|command| (command.get_display_order(), command.get_name().to_owned()));
+    commands
 }
 
 /// The root help text.

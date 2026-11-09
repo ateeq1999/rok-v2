@@ -109,6 +109,56 @@ fn tools_reaches_rok_tools() {
 }
 
 #[test]
+fn help_lists_rok_devs_words() {
+    let help = stdout(&rok(&["--help"]));
+    for word in ["dev", "run", "doctor", "port"] {
+        assert!(
+            help.lines().any(|line| line.trim_start().starts_with(word)),
+            "`{word}` missing from:\n{help}"
+        );
+    }
+}
+
+#[test]
+fn rok_devs_words_reach_rok_dev() {
+    for (args, usage) in [
+        (&["dev", "--help"][..], "Usage: rok dev"),
+        (&["run", "--help"][..], "Usage: rok run"),
+        (&["doctor", "--help"][..], "Usage: rok doctor"),
+        (&["port", "--help"][..], "Usage: rok port"),
+    ] {
+        let output = rok(args);
+        assert_eq!(
+            output.status.code(),
+            Some(0),
+            "{args:?}: {}",
+            stderr(&output)
+        );
+        assert!(
+            stdout(&output).contains(usage),
+            "{args:?}: {}",
+            stdout(&output)
+        );
+    }
+    let help = stdout(&rok(&["port", "--help"]));
+    assert!(help.contains("list") && help.contains("free"), "{help}");
+}
+
+/// Until each word's rok-dev ticket lands it says so, with rok-dev's exit
+/// code (1); a usage error is still 2.
+#[test]
+fn rok_devs_exit_codes_pass_through() {
+    let output = rok(&["doctor"]);
+    assert_eq!(output.status.code(), Some(1), "{}", stderr(&output));
+    assert!(
+        stderr(&output).contains("not built yet"),
+        "{}",
+        stderr(&output)
+    );
+    assert_eq!(rok(&["run"]).status.code(), Some(2));
+}
+
+#[test]
 fn an_unknown_word_without_an_executable_is_a_usage_error_naming_it() {
     let output = rok(&["no-such-thing", "--flag"]);
     assert_eq!(output.status.code(), Some(2));

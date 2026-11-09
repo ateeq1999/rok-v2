@@ -7,6 +7,7 @@ that answers, whose reference is the contract for it:
 | --- | --- | --- |
 | `init`, `gen`, `generate`, `migrate`, `db`, `server`, `schema`, `sqlc` (and their aliases) | `rok-data-cli`, linked | [rok-data's `docs/cli-reference.md`](https://github.com/ateeq1999/rok-data/blob/main/docs/cli-reference.md) |
 | `tools` | `rok-tools-cli`, linked | [rok-tools' README](https://github.com/ateeq1999/rok-tools#readme) |
+| `dev`, `run`, `doctor`, `port` | `rok-dev-cli`, linked | [rok-dev's README](https://github.com/ateeq1999/rok-dev#readme) |
 | any other `<name>` | the executable `rok-<name>` on the `PATH`, with the remaining arguments | that executable's own |
 
 ```text
@@ -18,8 +19,9 @@ rok update [OPTIONS]     install the latest release over this rok (see below)
 rok <word> [ARGS…]       route as above
 ```
 
-- rok-data's words are read from `rok_data_cli::command()` at run time, so
-  a command rok-data adds is reachable as soon as `rok` links that
+- rok-data's words are read from `rok_data_cli::command()`, and rok-dev's
+  from `rok_dev_cli::command()`, at run time, so
+  a command either adds is reachable as soon as `rok` links that
   release.
 - `rok <name>` with no `rok-<name>` on the `PATH` is a usage error (exit
   2) naming the executable looked for. An argument starting with `-` in
@@ -28,7 +30,7 @@ rok <word> [ARGS…]       route as above
 - A linked CLI's exit code, or a `rok-<name>`'s, is `rok`'s.
 - `rok --help` lists, under "Installed", the `rok-*` executables found on
   the `PATH`, without the linked CLIs' own standalone binaries
-  (`rok-data`, `rok-tools`), which only repeat a linked command.
+  (`rok-data`, `rok-tools`, `rok-dev`), which only repeat a linked command.
 
 ## `rok docs [COMMAND…] [OPTIONS]`
 

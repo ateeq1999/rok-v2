@@ -2,7 +2,7 @@
 //! on localhost and opened in the browser, or printed as Markdown.
 //!
 //! The command pages come from the command tree `rok` links (rok-data's
-//! commands with their examples, `tools`, `rok`'s own), so they describe
+//! commands with their examples, `tools`, rok-dev's, `rok`'s own), so they describe
 //! this binary's version; the guides are embedded with it.
 
 use std::ffi::OsString;

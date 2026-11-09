@@ -8,6 +8,19 @@ are this file's `## [X.Y.Z]` section.
 
 ## [Unreleased]
 
+**Added**
+
+- `rok dev`, `rok run`, `rok doctor` and `rok port` reach rok-dev's CLI
+  (`rok-dev-cli`, linked in; rok-data's workspace ADR 0034). Each says
+  "not built yet" (exit 1) until its rok-dev ticket lands. `rok-dev-cli`
+  is a git dependency until its first release, so this can't be
+  published to crates.io yet.
+
+**Changed**
+
+- `rok --help` lists each linked CLI's commands together, in that CLI's
+  own order.
+
 ## [0.9.0] — rok-data 0.9
 
 **Changed**

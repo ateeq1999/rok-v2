@@ -315,7 +315,9 @@ mod tests {
                 "{page}"
             );
         }
-        for command in ["init", "gen", "migrate", "db", "server", "tools", "docs"] {
+        for command in [
+            "init", "gen", "migrate", "db", "server", "tools", "dev", "port", "docs",
+        ] {
             assert!(
                 page.contains(&format!("(/commands/{command})")),
                 "{command}: {page}"

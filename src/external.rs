@@ -9,7 +9,7 @@ use crate::shown;
 
 /// The standalone binaries of the CLIs `rok` links: on the `PATH` they
 /// would only repeat a linked command, so the listing leaves them out.
-const LINKED_BINARIES: [&str; 2] = ["rok-data", "rok-tools"];
+const LINKED_BINARIES: [&str; 3] = ["rok-data", "rok-tools", "rok-dev"];
 
 /// Runs `rok-<name> <args>` from the `PATH` and returns its exit code; no
 /// such executable is a usage error (exit 2) naming the one looked for.
